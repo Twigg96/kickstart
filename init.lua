@@ -151,21 +151,13 @@ do
     },
   }
   -- [[ Colorscheme ]]
-  vim.pack.add { gh 'olimorris/onedarkpro.nvim' }
-  require('onedarkpro').setup {
-    options = {
-      transparency = true,
-    },
-  }
-  vim.cmd.colorscheme 'onedark_dark'
-  --vim.pack.add { gh 'folke/tokyonight.nvim' }
-  ---@diagnostic disable-next-line: missing-fields
-  --require('tokyonight').setup {
-  --  styles = {
-  --    comments = { italic = false }, -- Disable italics in comments
-  ------------------  },
+  --vim.pack.add { gh 'olimorris/onedarkpro.nvim' }
+  --require('onedarkpro').setup {
+  --  options = {
+  --    transparency = true,
+  --  },
   --}
-  --vim.cmd.colorscheme 'tokyonight-night'
+  --vim.cmd.colorscheme 'onedark_dark'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -608,7 +600,7 @@ end
 -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 --
 --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
--- require 'custom.plugins'
+require 'custom.plugins'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
