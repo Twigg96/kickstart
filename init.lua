@@ -18,7 +18,7 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.o.inccommand = 'split'
-vim.o.cursorline = true
+vim.o.cursorline = false
 vim.o.scrolloff = 10
 vim.o.confirm = true
 -- [[ Basic Keymaps ]]
@@ -151,14 +151,21 @@ do
     },
   }
   -- [[ Colorscheme ]]
-  vim.pack.add { gh 'folke/tokyonight.nvim' }
-  ---@diagnostic disable-next-line: missing-fields
-  require('tokyonight').setup {
-    styles = {
-      comments = { italic = false }, -- Disable italics in comments
+  vim.pack.add { gh 'olimorris/onedarkpro.nvim' }
+  require('onedarkpro').setup {
+    options = {
+      transparency = true,
     },
   }
-  vim.cmd.colorscheme 'tokyonight-night'
+  vim.cmd.colorscheme 'onedark_dark'
+  --vim.pack.add { gh 'folke/tokyonight.nvim' }
+  ---@diagnostic disable-next-line: missing-fields
+  --require('tokyonight').setup {
+  --  styles = {
+  --    comments = { italic = false }, -- Disable italics in comments
+  ------------------  },
+  --}
+  --vim.cmd.colorscheme 'tokyonight-night'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
