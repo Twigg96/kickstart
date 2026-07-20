@@ -175,6 +175,7 @@ do
   -- - sd'   - [S]urround [D]elete [']quotes
   -- - sr)'  - [S]urround [R]eplace [)] [']
   require('mini.surround').setup()
+  require('mini.pairs').setup()
   local statusline = require 'mini.statusline'
   statusline.setup { use_icons = true }
 
