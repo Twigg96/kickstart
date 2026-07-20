@@ -28,8 +28,8 @@ vim.diagnostic.config {
   update_in_insert = false,
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
-  underline = { severity = { min = vim.diagnostic.severity.WARN } },
-  virtual_text = true, -- Text shows up at the end of the line
+  underline = { severity = { min = vim.diagnostic.severity.ERROR } },
+  virtual_text = false,  -- Text shows up at the end of the line
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines
   jump = {
     on_jump = function(_, bufnr)
@@ -106,7 +106,10 @@ do
       end
 
       if name == 'LuaSnip' then
-        if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then run_build(name, { 'make', 'install_jsregexp' }, ev.data.path) end
+        if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then
+          run_build(name, { 'make', 'install_jsregexp' },
+            ev.data.path)
+        end
         return
       end
     end,
@@ -138,10 +141,10 @@ do
     delay = 0,
     icons = { mappings = vim.g.have_nerd_font },
     spec = {
-      { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+      { '<leader>s', group = '[S]earch',    mode = { 'n', 'v' } },
       { '<leader>t', group = '[T]oggle' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
-      { 'gr', group = 'LSP Actions', mode = { 'n' } },
+      { '<leader>h', group = 'Git [H]unk',  mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
+      { 'gr',        group = 'LSP Actions', mode = { 'n' } },
     },
   }
 
@@ -274,7 +277,8 @@ do
   )
 
   -- Shortcut for searching your Neovim configuration files
-  vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = '[S]earch [N]eovim files' })
+  vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end,
+    { desc = '[S]earch [N]eovim files' })
 end
 
 -- ============================================================
@@ -337,7 +341,9 @@ do
 
       -- This may be unwanted, since they displace some of your code
       if client and client:supports_method('textDocument/inlayHint', event.buf) then
-        map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
+        map('<leader>th',
+          function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
+          '[T]oggle Inlay [H]ints')
       end
     end,
   })
@@ -375,7 +381,8 @@ do
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   }
-  vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end,
+    { desc = '[F]ormat buffer' })
 end
 
 -- ============================================================
